@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TerminerstellungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Length" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="AppointmentPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="WorkshopID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Appointme__Custo__4F7CD00D" FromRole="Appointment" ToRole="Customer" />
+    <NavigationProperty Name="Workshop" Relationship="Self.FK__Appointme__Works__5070F446" FromRole="Appointment" ToRole="Workshop" />
+  </EntityType>
+  <EntityType Name="Bike">
+    <Key>
+      <PropertyRef Name="BikeID" />
+    </Key>
+    <Property Name="BikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SerialNumber" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Bike__CustomerID__534D60F1" FromRole="Bike" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Postleitzahl" Type="Int32" Nullable="false" />
+    <Property Name="Ort" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Straße" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Hausnummer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK__Appointme__Custo__4F7CD00D" FromRole="Customer" ToRole="Appointment" />
+    <NavigationProperty Name="Bike" Relationship="Self.FK__Bike__CustomerID__534D60F1" FromRole="Customer" ToRole="Bike" />
+  </EntityType>
+  <EntityType Name="Hardware">
+    <Key>
+      <PropertyRef Name="HardwareID" />
+    </Key>
+    <Property Name="HardwareID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HardwareName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="HardwarePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Repair">
+    <Key>
+      <PropertyRef Name="RepairID" />
+    </Key>
+    <Property Name="RepairID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepairDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RepairPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Wage" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="Supervisor" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Workshop">
+    <Key>
+      <PropertyRef Name="WorkshopID" />
+    </Key>
+    <Property Name="WorkshopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Postleitzahl" Type="Int32" Nullable="false" />
+    <Property Name="Ort" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Straße" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Hausnummer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK__Appointme__Works__5070F446" FromRole="Workshop" ToRole="Appointment" />
+  </EntityType>
+  <Association Name="FK__Appointme__Custo__4F7CD00D">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Works__5070F446">
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workshop">
+        <PropertyRef Name="WorkshopID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="WorkshopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bike__CustomerID__534D60F1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Bike" Type="Self.Bike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Bike">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TerminerstellungEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+    <EntitySet Name="Bike" EntityType="Self.Bike" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Hardware" EntityType="Self.Hardware" />
+    <EntitySet Name="Repair" EntityType="Self.Repair" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" />
+    <EntitySet Name="Workshop" EntityType="Self.Workshop" />
+    <AssociationSet Name="FK__Appointme__Custo__4F7CD00D" Association="Self.FK__Appointme__Custo__4F7CD00D">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Works__5070F446" Association="Self.FK__Appointme__Works__5070F446">
+      <End Role="Workshop" EntitySet="Workshop" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bike__CustomerID__534D60F1" Association="Self.FK__Bike__CustomerID__534D60F1">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Bike" EntitySet="Bike" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

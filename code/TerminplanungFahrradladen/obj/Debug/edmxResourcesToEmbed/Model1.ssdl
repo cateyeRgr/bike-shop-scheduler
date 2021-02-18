@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TerminerstellungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Length" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="AppointmentPrice" Type="money" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="WorkshopID" Type="int" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6013: Für Tabelle/Sicht 'Terminerstellung.dbo.AppointmentRepair' ist kein Primärschlüssel definiert, und es konnte kein gültiger Primärschlüssel abgeleitet werden. Diese Tabelle/Sicht wurde ausgeschlossen. Wenn Sie die Entität verwenden möchten, müssen Sie das Schema überprüfen, die richtigen Schlüssel hinzufügen und die Auskommentierung aufheben.
+        <EntityType Name="AppointmentRepair">
+          <Property Name="AppointmentID" Type="int" />
+          <Property Name="RepairID" Type="int" />
+        </EntityType>-->
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6013: Für Tabelle/Sicht 'Terminerstellung.dbo.AppointmentStaff' ist kein Primärschlüssel definiert, und es konnte kein gültiger Primärschlüssel abgeleitet werden. Diese Tabelle/Sicht wurde ausgeschlossen. Wenn Sie die Entität verwenden möchten, müssen Sie das Schema überprüfen, die richtigen Schlüssel hinzufügen und die Auskommentierung aufheben.
+        <EntityType Name="AppointmentStaff">
+          <Property Name="AppointmentID" Type="int" />
+          <Property Name="StaffID" Type="int" />
+        </EntityType>-->
+  <EntityType Name="Bike">
+    <Key>
+      <PropertyRef Name="BikeID" />
+    </Key>
+    <Property Name="BikeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SerialNumber" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Postleitzahl" Type="int" Nullable="false" />
+    <Property Name="Ort" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Straße" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Hausnummer" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hardware">
+    <Key>
+      <PropertyRef Name="HardwareID" />
+    </Key>
+    <Property Name="HardwareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HardwareName" Type="varchar" MaxLength="100" />
+    <Property Name="HardwarePrice" Type="money" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6013: Für Tabelle/Sicht 'Terminerstellung.dbo.HardwareRepair' ist kein Primärschlüssel definiert, und es konnte kein gültiger Primärschlüssel abgeleitet werden. Diese Tabelle/Sicht wurde ausgeschlossen. Wenn Sie die Entität verwenden möchten, müssen Sie das Schema überprüfen, die richtigen Schlüssel hinzufügen und die Auskommentierung aufheben.
+        <EntityType Name="HardwareRepair">
+          <Property Name="HardwareID" Type="int" />
+          <Property Name="RepairID" Type="int" />
+        </EntityType>-->
+  <EntityType Name="Repair">
+    <Key>
+      <PropertyRef Name="RepairID" />
+    </Key>
+    <Property Name="RepairID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepairDetails" Type="varchar" MaxLength="100" />
+    <Property Name="RepairPrice" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Wage" Type="money" Nullable="false" />
+    <Property Name="Hours" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="Supervisor" Type="int" />
+  </EntityType>
+  <EntityType Name="Workshop">
+    <Key>
+      <PropertyRef Name="WorkshopID" />
+    </Key>
+    <Property Name="WorkshopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Postleitzahl" Type="int" Nullable="false" />
+    <Property Name="Ort" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Straße" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Hausnummer" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Fehler 6004: Auf die Tabelle 'Terminerstellung.dbo.AppointmentStaff' wurde durch eine Beziehung verwiesen, die jedoch nicht gefunden wurde.
+        <Association Name="FK__Appointme__Appoi__59063A47" />-->
+  <!--Während der Generierung sind Fehler aufgetreten:
+Fehler 6004: Auf die Tabelle 'Terminerstellung.dbo.AppointmentRepair' wurde durch eine Beziehung verwiesen, die jedoch nicht gefunden wurde.
+        <Association Name="FK__Appointme__Appoi__5EBF139D" />-->
+  <Association Name="FK__Appointme__Custo__4F7CD00D">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Fehler 6004: Auf die Tabelle 'Terminerstellung.dbo.AppointmentRepair' wurde durch eine Beziehung verwiesen, die jedoch nicht gefunden wurde.
+        <Association Name="FK__Appointme__Repai__5FB337D6" />-->
+  <!--Während der Generierung sind Fehler aufgetreten:
+Fehler 6004: Auf die Tabelle 'Terminerstellung.dbo.AppointmentStaff' wurde durch eine Beziehung verwiesen, die jedoch nicht gefunden wurde.
+        <Association Name="FK__Appointme__Staff__59FA5E80" />-->
+  <Association Name="FK__Appointme__Works__5070F446">
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workshop">
+        <PropertyRef Name="WorkshopID" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="WorkshopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bike__CustomerID__534D60F1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Bike" Type="Self.Bike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Bike">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Während der Generierung sind Fehler aufgetreten:
+Fehler 6004: Auf die Tabelle 'Terminerstellung.dbo.HardwareRepair' wurde durch eine Beziehung verwiesen, die jedoch nicht gefunden wurde.
+        <Association Name="FK__HardwareR__Hardw__5BE2A6F2" />-->
+  <!--Während der Generierung sind Fehler aufgetreten:
+Fehler 6004: Auf die Tabelle 'Terminerstellung.dbo.HardwareRepair' wurde durch eine Beziehung verwiesen, die jedoch nicht gefunden wurde.
+        <Association Name="FK__HardwareR__Repai__5CD6CB2B" />-->
+  <EntityContainer Name="TerminerstellungModelStoreContainer">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bike" EntityType="Self.Bike" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hardware" EntityType="Self.Hardware" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workshop" EntityType="Self.Workshop" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Appointme__Custo__4F7CD00D" Association="Self.FK__Appointme__Custo__4F7CD00D">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Works__5070F446" Association="Self.FK__Appointme__Works__5070F446">
+      <End Role="Workshop" EntitySet="Workshop" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bike__CustomerID__534D60F1" Association="Self.FK__Bike__CustomerID__534D60F1">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Bike" EntitySet="Bike" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
