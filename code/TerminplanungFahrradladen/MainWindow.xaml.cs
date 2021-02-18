@@ -24,11 +24,11 @@ namespace TerminplanungFahrradladen
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private ICollectionView CollectionView;
+        //private ICollectionView CollectionView;
         private TerminerstellungEntities Context = new TerminerstellungEntities();
         List<String> myDataList = null;
         int rbIsChecked = 0;
+        int dauerTermin = 2;
 
         public MainWindow()
         {
@@ -114,18 +114,20 @@ namespace TerminplanungFahrradladen
                 //{
                 //    formatted = selectedDate.Value.ToString("yyyy--dd--MM", System.Globalization.CultureInfo.InvariantCulture);
                 //}
-                DateTime date = CalendarT.SelectedDate.Value;
+                //DateTime date = CalendarT.SelectedDate.Value;
+                String date = CalendarT.SelectedDate.Value.ToString();
 
                 // Anlegen eines neuen Objekts.
                 Appointment a = new Appointment
                 {
                     //alternative zum abändern: a.Date = selectedDate.Year + "--"selectedDate.Day + "--" + selectedDate.Month;
-                    Date = Convert.ToDateTime(date),
+                    //Date = Convert.ToDateTime(date),
+                    Date = DateTime.Parse(date),
                     //Date = Convert.ToDateTime("2021-03-24 00:00:00.000"),
                     //Date = date,
-                    Length = 2,
-                    AppointmentPrice = 50m,
-                    CustomerID = 1,
+                    Length = dauerTermin,
+                    AppointmentPrice = Decimal.Parse(TbPreis.Text),
+                    //CustomerID = 10,
                     WorkshopID = 1
                 };
 
@@ -210,12 +212,12 @@ namespace TerminplanungFahrradladen
                 {
                     LastName = TbMANeuVorName.Text,
                     FirstName = TbMANeuName.Text,
-                    Wage = int.Parse(TbMANeuGehalt.Text),
+                    Wage = Decimal.Parse(TbMANeuGehalt.Text),
                     Hours = int.Parse(TbMANeuStunden.Text),
                     Supervisor = rbIsChecked
                 };
 
-                db.Customer.Add(s);
+                db.Staff.Add(s);
                 db.SaveChanges();
             }
             Terminplanen.Focus();
