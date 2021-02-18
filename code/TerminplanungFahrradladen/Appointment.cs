@@ -23,5 +23,10 @@ namespace TerminplanungFahrradladen
     
         public virtual Customer Customer { get; set; }
         public virtual Workshop Workshop { get; set; }
+
+        //public static implicit operator Appointment(Appointment v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\obj\Debug\
+C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\obj\Release\
 TerminplanungFahrradladen
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\App.xaml
 11151548125
 21750853300
-161946663277
+15-1505944652
 18-112335150
 MainWindow.xaml;
 
-False
+True
 

@@ -127,7 +127,7 @@
             </Grid>
         </TabItem>
 
-        <TabItem Name="Kunde" Header="Kunde">
+        <TabItem Name="Kunde" Header="Kunde anlegen">
             <Grid x:Name="MainGridKunde">
 
                 <Grid.ColumnDefinitions>
@@ -149,25 +149,68 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Name="LblKundeNeuName" Content="Name" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="1" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuName"  Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
+                <TextBox Name="TbKundeNeuName" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
 
                 <Label Name="LblKundeNeuVorame" Content="Vorname" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="1" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuVorName"  Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
+                <TextBox Name="TbKundeNeuVorName" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
 
                 <Label Name="LblKundeNeuStrasse" Content="Straße" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="2" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuStrasse"  Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
+                <TextBox Name="TbKundeNeuStrasse" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
 
                 <Label Name="LblKundeNeuHNr" Content="Nr." HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="2" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuHNr" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
+                <TextBox Name="TbKundeNeuHNr" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
 
                 <Label Name="LblKundeNeuPLZ" Content="PLZ" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="4" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuPLZ" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
+                <TextBox Name="TbKundeNeuPLZ" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
 
                 <Label Name="LblKundeNeuOrt" Content="Ort" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="4" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuOrt" Margin="10,15,0,15" Grid.Row="4" Grid.Column="3" />
+                <TextBox Name="TbKundeNeuOrt" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="4" Grid.Column="3" />
 
-                <Button x:Name="BtnSpeichernKundeNeu" Click="BtnSpeichernKundeNeu_Click" Content="Speichern" Grid.Row="6" Grid.Column="2" Margin="30,15,5,10"/>
-                <Button x:Name="BtnClearKundeNeu" Click="BtnClearKundeNeu_Click" Content="Löschen" Grid.Row="6" Grid.Column="3" Margin="5,15,30,10"/>
+                <Button x:Name="BtnSpeichernKundeNeu" Click="BtnSpeichernKundeNeu_Click" Content="Speichern" Grid.Row="6" Grid.Column="3" Margin="30,15,5,10"/>
+                <Button x:Name="BtnClearKundeNeu" Click="BtnClearKundeNeu_Click" Content="Löschen" Grid.Row="6" Grid.Column="4" Margin="5,15,30,10"/>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem Name="Mitarbeiter" Header="Mitarbeiter anlegen">
+            <Grid x:Name="MainGridMitarbeiter">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Label Name="LblMANeuName" Content="Name" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="1" Grid.Column="0" />
+                <TextBox Name="TbMANeuName" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Name="LblMANeuVorame" Content="Vorname" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="1" Grid.Column="2" />
+                <TextBox Name="TbMANeuVorName" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
+
+                <Label Name="LblMAGehalt" Content="Gehalt" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="2" Grid.Column="0" />
+                <TextBox Name="TbMANeuGehalt" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
+
+                <Label Name="LblMANeuStunden" Content="Stunden" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="2" Grid.Column="2" />
+                <TextBox Name="TbMANeuStunden" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
+
+                <Label Name="LblMANeuVor" Content="Vorgesetzter" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="4" Grid.Column="0" />
+                <!--<TextBox Name="TbMANeuVor" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />-->
+                <CheckBox Name="CbMANeuVor" Click="CbMANeuVor_Click" VerticalAlignment="Center" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
+                
+                <Button x:Name="BtnSpeichernMANeu" Click="BtnSpeichernMANeu_Click" Content="Speichern" Grid.Row="6" Grid.Column="3" Margin="30,15,5,10"/>
+                <Button x:Name="BtnClearMANeu" Click="BtnClearMANeu_Click" Content="Löschen" Grid.Row="6" Grid.Column="4" Margin="5,15,30,10"/>
 
             </Grid>
         </TabItem>
