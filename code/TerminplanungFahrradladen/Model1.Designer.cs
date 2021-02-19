@@ -1,4 +1,4 @@
-﻿// Die T4-Codegenerierung ist für Modell 'C:\Users\KM\Source\Repos\TerminplanungFahrradladen\TerminplanungFahrradladen\Model1.edmx' aktiviert. 
+﻿// Die T4-Codegenerierung ist für Modell 'C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\Model1.edmx' aktiviert. 
 // Um die Generierung von Legacycode zu aktivieren, ändern Sie den Wert der Designer-Eigenschaft 'Code Generation Strategy'
 // in 'Legacy ObjectContext'. Diese Eigenschaft wird im Eigenschaftenfenster angezeigt, wenn das Modell
 // im Designer geöffnet ist.

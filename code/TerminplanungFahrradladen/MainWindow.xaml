@@ -39,7 +39,7 @@
                     <Setter.Value>
                         <!--ControlTemplate ändert (Tab)Control Aussehen, nicht die Funktionen-->
                         <ControlTemplate TargetType="TabItem">
-                            <Border x:Name="Border" BorderThickness="0,1,1,0" BorderBrush="Wheat" CornerRadius="0,10,0,0" >
+                            <Border x:Name="Border" BorderThickness="0,1,1,0" BorderBrush="Wheat" CornerRadius="0,10,0,0" Height="30">
                                 <!--ControlTemplate braucht einen ContentPresenter-->
                                 <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
@@ -47,7 +47,6 @@
                                         ContentSource="Header"
                                         Margin="10,1"/>
                             </Border>
-
                             <!--Tabfarbe ändert sich, wenn ausgewählt-->
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="False">
@@ -56,7 +55,7 @@
                                 </Trigger>
 
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="WhiteSmoke" />
+                                    <Setter TargetName="Border" Property="Background" Value="AliceBlue" />
                                     <Setter Property="Foreground" Value="#4488FF"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
@@ -64,7 +63,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
         </TabControl.Resources>
 
 
@@ -106,10 +104,10 @@
 
                 <Calendar x:Name="CalendarT" HorizontalAlignment="Center"  Grid.Row="2" Grid.Column="1" Margin="0,5,0,0"/>
                 <Label Name="LblUhrzeit" Content="Uhrzeit" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="3" Grid.Column="0" />
-                <TextBox Name="TbUhrzeit" BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="3" Grid.Column="1" Margin="0,5,0,5"/>
+                <TextBox Name="TbUhrzeit" PreviewTextInput="TbUhrzeit_PreviewTextInput" BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="3" Grid.Column="1" Margin="0,5,0,5"/>
 
                 <Label Name="LblPreis" HorizontalAlignment="Center" Content="Preis" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="4" Grid.Column="0" />
-                <TextBox Name="TbPreis" BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="4" Grid.Column="1" Margin="0,5,0,5" />
+                <TextBox Name="TbPreis" PreviewTextInput="TbPreis_PreviewTextInput"  BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="4" Grid.Column="1" Margin="0,5,0,5" />
 
                 <Label Name="LblMitarbeiter" Content="Mitarbeiter" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="5" Grid.Column="0" />
                 <ComboBox Name="comboBoxMitarbeiter" BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="5" Grid.Column="1" Margin="0,5,0,5"/>
@@ -153,7 +151,7 @@
             </Grid>
         </TabItem>
 
-        <TabItem Name="Kunde" Header="Kunde anlegen">
+        <TabItem Name="Kunde" Header="Kunde anlegen" FontWeight="Bold">
             <Grid x:Name="MainGridKunde">
 
                 <Grid.ColumnDefinitions>
@@ -175,22 +173,22 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Name="LblKundeNeuName" Content="Name" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuName" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
+                <TextBox Name="TbKundeNeuName" PreviewTextInput="TbKundeNeuName_PreviewTextInput" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
 
                 <Label Name="LblKundeNeuVorame" Content="Vorname" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuVorName" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
+                <TextBox Name="TbKundeNeuVorName" PreviewTextInput="TbKundeNeuVorName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
 
                 <Label Name="LblKundeNeuStrasse" Content="Straße" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuStrasse" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
+                <TextBox Name="TbKundeNeuStrasse" PreviewTextInput="TbKundeNeuStrasse_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
 
                 <Label Name="LblKundeNeuHNr" Content="Nr." HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuHNr" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
+                <TextBox Name="TbKundeNeuHNr" PreviewTextInput="TbKundeNeuHNr_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
 
                 <Label Name="LblKundeNeuPLZ" Content="PLZ" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="4" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuPLZ" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
+                <TextBox Name="TbKundeNeuPLZ" PreviewTextInput="TbKundeNeuPLZ_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
 
                 <Label Name="LblKundeNeuOrt" Content="Ort" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="4" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuOrt" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="4" Grid.Column="3" />
+                <TextBox Name="TbKundeNeuOrt" PreviewTextInput="TbKundeNeuOrt_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="4" Grid.Column="3" />
 
                 <Button x:Name="BtnSpeichernKundeNeu" Click="BtnSpeichernKundeNeu_Click" Content="Speichern" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="3" Margin="30,15,5,10"/>
                 <Button x:Name="BtnClearKundeNeu" Click="BtnClearKundeNeu_Click" Content="Löschen" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="4" Margin="5,15,30,10"/>
@@ -221,16 +219,16 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Name="LblMANeuName" Content="Name" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="1" />
-                <TextBox Name="TbMANeuName" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="2"/>
+                <TextBox Name="TbMANeuName" PreviewTextInput="TbMANeuName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="2"/>
 
                 <Label Name="LblMANeuVorame" Content="Vorname" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="3" />
-                <TextBox Name="TbMANeuVorName" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="4"/>
+                <TextBox Name="TbMANeuVorName" PreviewTextInput="TbMANeuVorName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="4"/>
 
                 <Label Name="LblMAGehalt" Content="Gehalt" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="1" />
-                <TextBox Name="TbMANeuGehalt" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="2" />
+                <TextBox Name="TbMANeuGehalt" PreviewTextInput="TbMANeuGehalt_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="2" />
 
                 <Label Name="LblMANeuStunden" Content="Stunden" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="3" />
-                <TextBox Name="TbMANeuStunden" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="4" />
+                <TextBox Name="TbMANeuStunden" PreviewTextInput="TbMANeuStunden_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="4" />
 
                 <Label Name="LblMANeuVor" Content="Vorgesetzter" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,12" Grid.Row="4" Grid.Column="1" />
                 <CheckBox Name="CbMANeuVor" Click="CbMANeuVor_Click" Foreground="#1C8ADB" VerticalAlignment="Center" BorderBrush="#1C8ADB" Margin="10,21,0,21" Grid.Row="4" Grid.Column="2" />

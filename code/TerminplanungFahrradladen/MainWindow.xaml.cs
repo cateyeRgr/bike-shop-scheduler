@@ -6,6 +6,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,8 +37,8 @@ namespace TerminplanungFahrradladen
             //Markiert nächsten Tag als Voreinstellung für neuen Termin
             CalendarT.SelectedDate = DateTime.Now.AddDays(1);
             //Vorauswahl ComboBoxen: erstes Element
-            comboBoxKunde.SelectedIndex = comboBoxKunde.SelectedIndex + 1;
-            comboBoxMitarbeiter.SelectedIndex = comboBoxMitarbeiter.SelectedIndex + 1;
+            comboBoxKunde.SelectedIndex = 0;
+            comboBoxMitarbeiter.SelectedIndex = 0;
 
         }
 
@@ -99,6 +100,7 @@ namespace TerminplanungFahrradladen
             {
                 //var list = CollectionView.Cast<Customer>();
                 //string formatted;
+                DateTime dateAndTime;
 
                 //Kundennachamen aus ComboBox in CustomerDB suchen und ID liefern
                 string comboBoxString = comboBoxKunde.SelectedValue.ToString();
@@ -108,25 +110,20 @@ namespace TerminplanungFahrradladen
                 //int customerID = list.FirstOrDefault(x => x.LastName.Equals(searchString)).GetHashCode();
 
 
-                ////Ausgewähltes Datum des DatePickers in SQL-DateTime konvertieren
-                //DateTime? selectedDate = CalendarT.SelectedDate;
-                //if (selectedDate.HasValue)
-                //{
-                //    formatted = selectedDate.Value.ToString("yyyy--dd--MM", System.Globalization.CultureInfo.InvariantCulture);
-                //}
-                //DateTime date = CalendarT.SelectedDate.Value;
-                String date = CalendarT.SelectedDate.Value.ToString();
+                //Ausgewähltes Datum des DatePickers in SQL-DateTime konvertieren
+                DateTime? selectedDate = CalendarT.SelectedDate;
+                string calendarDate = CalendarT.SelectedDate.Value.ToString();
+                DateTime date = DateTime.Parse(calendarDate);
+                TimeSpan time = TimeSpan.Parse(TbUhrzeit.Text);
+                dateAndTime = date + time;
 
                 // Anlegen eines neuen Objekts.
                 Appointment a = new Appointment
                 {
-                    //alternative zum abändern: a.Date = selectedDate.Year + "--"selectedDate.Day + "--" + selectedDate.Month;
-                    //Date = Convert.ToDateTime(date),
-                    Date = DateTime.Parse(date),
+                    Date = dateAndTime,
                     //Date = Convert.ToDateTime("2021-03-24 00:00:00.000"),
-                    //Date = date,
                     Length = dauerTermin,
-                    AppointmentPrice = Decimal.Parse(TbPreis.Text),
+                    AppointmentPrice = decimal.Parse(TbPreis.Text),
                     //CustomerID = 10,
                     WorkshopID = 1
                 };
@@ -138,16 +135,26 @@ namespace TerminplanungFahrradladen
                 TerminSuchen.Focus();
             };
 
+            //using (TerminerstellungEntities db = new TerminerstellungEntities())
+            //{
+            //    Bike b = new Bike { };
+            //    AppointmentStaff as = new AppointmentStaff
+            //    {
+
+            //    }
+            //}
+
+
         }
 
         //Leeren der gefüllten Felder im Terminplanungs-Tab
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
-            comboBoxKunde.ClearValue(ContentProperty);
+            //TbUhrzeit.ClearValue(ContentProperty);
             TbUhrzeit.Text = "";
             TbPreis.Text = "";
-            comboBoxKunde.ClearValue(ContentProperty);
-
+            comboBoxKunde.SelectedIndex = 0;
+            comboBoxMitarbeiter.SelectedIndex = 0;
 
         }
 
@@ -160,13 +167,7 @@ namespace TerminplanungFahrradladen
         //Löschen eines Termins im Terminsuchen-Tab
         private void BtnTerminLoeschen_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-
-        private void BtnClearKundeNeu_Click(object sender, RoutedEventArgs e)
-        {
-
+            //ToDO
         }
 
         private void BtnSpeichernKundeNeu_Click(object sender, RoutedEventArgs e)
@@ -190,9 +191,14 @@ namespace TerminplanungFahrradladen
             Terminplanen.Focus();
         }
 
-        private void BtnClearMANeu_Click(object sender, RoutedEventArgs e)
+        private void BtnClearKundeNeu_Click(object sender, RoutedEventArgs e)
         {
-
+            TbKundeNeuVorName.Text = "";
+            TbKundeNeuName.Text = "";
+            TbKundeNeuPLZ.Text = "";
+            TbKundeNeuOrt.Text = "";
+            TbKundeNeuStrasse.Text = "";
+            TbKundeNeuHNr.Text = "";
         }
 
         private void CbMANeuVor_Click(object sender, RoutedEventArgs e)
@@ -205,14 +211,13 @@ namespace TerminplanungFahrradladen
             using (TerminerstellungEntities db = new TerminerstellungEntities())
             {
                 //checked = CbMANeuVor.IsChecked ? 1 : 0;
-                //Supervisor = TbMANeuVor.Text
                 //Supervisor = int.Parse((CbMANeuVor.IsChecked?? false )? 1:0)
 
                 Staff s = new Staff
                 {
                     LastName = TbMANeuVorName.Text,
                     FirstName = TbMANeuName.Text,
-                    Wage = Decimal.Parse(TbMANeuGehalt.Text),
+                    Wage = decimal.Parse(TbMANeuGehalt.Text),
                     Hours = int.Parse(TbMANeuStunden.Text),
                     Supervisor = rbIsChecked
                 };
@@ -221,6 +226,126 @@ namespace TerminplanungFahrradladen
                 db.SaveChanges();
             }
             Terminplanen.Focus();
+        }
+
+
+        private void BtnClearMANeu_Click(object sender, RoutedEventArgs e)
+        {
+            TbMANeuVorName.Text = "";
+            TbMANeuName.Text = "";
+            TbMANeuGehalt.Text = "";
+            TbMANeuStunden.Text = "";
+            CbMANeuVor.IsChecked = false;
+        }
+
+        //Prüfen der Textboxen auf korrekte Eingabe (Buchstaben oder Ziffern)
+        private void TbUhrzeit_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]{2}:[0-9]{2}");
+            if (regex.IsMatch(TbUhrzeit.Text))
+            {
+                MessageBox.Show("Bitte geben Sie eine Uhrzeit im Format hh:mm ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbPreis_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            if (regex.IsMatch(TbPreis.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Ziffern ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbKundeNeuName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(TbKundeNeuName.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbKundeNeuVorName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(TbKundeNeuVorName.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbKundeNeuStrasse_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(TbKundeNeuStrasse.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbKundeNeuHNr_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Zahlen und Buchstaben möglich, z. B. Hausnummer 24a; längere Hausnummern möglich
+            Regex regex = new Regex("^\\d{5} [a-z]?");
+            if (regex.IsMatch(TbKundeNeuPLZ.Text))
+            {
+                MessageBox.Show("Bitte geben Sie maximal 5 Ziffern und einen Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbKundeNeuPLZ_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^\\d{5}");
+            if (regex.IsMatch(TbKundeNeuPLZ.Text))
+            {
+                MessageBox.Show("Bitte geben Sie maximal 5 Ziffern ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbKundeNeuOrt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(TbKundeNeuOrt.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbMANeuName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(TbMANeuName.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbMANeuVorName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(TbMANeuVorName.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbMANeuGehalt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            if (regex.IsMatch(TbMANeuGehalt.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Ziffern ohne Leerzeichen ein.");
+            }
+        }
+
+        private void TbMANeuStunden_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            if (regex.IsMatch(TbMANeuStunden.Text))
+            {
+                MessageBox.Show("Bitte geben Sie Ziffern ohne Leerzeichen ein.");
+            }
         }
     }
 }
