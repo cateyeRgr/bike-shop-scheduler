@@ -1,4 +1,4 @@
-# bike-shop-scheduler
+# Terminplaner Fahrradladen/ Bike-Shop-Scheduler
 SOT - Project 6 - J. O., A. P., K. M. 
 
 ### Project summary: This project's objective is to provide scheduling software for company manpower planning and repair work for better bike workshop management.
