@@ -193,7 +193,6 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
 
-
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
@@ -232,43 +231,41 @@
         <TabItem Name="Mitarbeiter" Header="Mitarbeiter anlegen" FontWeight="Bold">
             <Grid x:Name="MainGridMitarbeiter">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
 
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+                <Label Name="LblMANeuName" Content="Name" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="0" />
+                <TextBox Name="TbMANeuName" PreviewTextInput="TbMANeuName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="1"/>
 
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <Label Name="LblMANeuName" Content="Name" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="1" />
-                <TextBox Name="TbMANeuName" PreviewTextInput="TbMANeuName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="2"/>
+                <Label Name="LblMANeuVorame" Content="Vorname" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="2" />
+                <TextBox Name="TbMANeuVorName" PreviewTextInput="TbMANeuVorName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="3"/>
 
-                <Label Name="LblMANeuVorame" Content="Vorname" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="3" />
-                <TextBox Name="TbMANeuVorName" PreviewTextInput="TbMANeuVorName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="4"/>
+                <Label Name="LblMAGehalt" Content="Gehalt" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="0" />
+                <TextBox Name="TbMANeuGehalt" PreviewTextInput="TbMANeuGehalt_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="1" />
 
-                <Label Name="LblMAGehalt" Content="Gehalt" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="1" />
-                <TextBox Name="TbMANeuGehalt" PreviewTextInput="TbMANeuGehalt_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="2" />
+                <Label Name="LblMANeuStunden" Content="Stunden" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="2" />
+                <TextBox Name="TbMANeuStunden" PreviewTextInput="TbMANeuStunden_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="3" />
 
-                <Label Name="LblMANeuStunden" Content="Stunden" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="3" />
-                <TextBox Name="TbMANeuStunden" PreviewTextInput="TbMANeuStunden_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="4" />
-
-                <Label Name="LblMANeuVor" Content="Vorgesetzter" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,12" Grid.Row="4" Grid.Column="1" />
-                <CheckBox Name="CbMANeuVor" Click="CbMANeuVor_Click" Foreground="#1C8ADB" VerticalAlignment="Center" BorderBrush="#1C8ADB" Margin="10,21,0,21" Grid.Row="4" Grid.Column="2" />
+                <Label Name="LblMANeuVor" Content="Vorgesetzter" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,12" Grid.Row="4" Grid.Column="0" />
+                <CheckBox Name="CbMANeuVor" Click="CbMANeuVor_Click" Foreground="#1C8ADB" VerticalAlignment="Center" BorderBrush="#1C8ADB" Margin="10,21,0,21" Grid.Row="4" Grid.Column="1" />
 
                 <Label Name="LblGespeichertMA" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="6" Grid.Column="0" />
-                <Button x:Name="BtnSpeichernMANeu" Click="BtnSpeichernMANeu_Click" Content="Speichern" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="4" Margin="30,15,5,10"/>
-                <Button x:Name="BtnClearMANeu" Click="BtnClearMANeu_Click" Content="Löschen" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="5" Margin="5,15,30,10"/>
+                <Button x:Name="BtnSpeichernMANeu" Click="BtnSpeichernMANeu_Click" Content="Speichern" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="3" Margin="30,15,5,10"/>
+                <Button x:Name="BtnClearMANeu" Click="BtnClearMANeu_Click" Content="Löschen" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="4" Margin="5,15,30,10"/>
 
             </Grid>
         </TabItem>
