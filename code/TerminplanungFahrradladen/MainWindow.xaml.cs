@@ -104,10 +104,11 @@ namespace TerminplanungFahrradladen
 
                 //Kundennachamen aus ComboBox in CustomerDB suchen und ID liefern
                 string comboBoxString = comboBoxKunde.SelectedValue.ToString();
-                string[] searchTrim = comboBoxString.Split(' ');
-                string searchString = searchTrim[0];
+                string[] searchName = comboBoxString.Split(' ');
+                string searchLastName = searchName[0];
 
-                //int customerID = list.FirstOrDefault(x => x.LastName.Equals(searchString)).GetHashCode();
+                Customer customer = db.Customer.FirstOrDefault(x => x.LastName == searchLastName);
+                int customerID = customer.CustomerID;
 
 
                 //Ausgewähltes Datum des DatePickers in SQL-DateTime konvertieren
@@ -128,6 +129,8 @@ namespace TerminplanungFahrradladen
                     WorkshopID = 1
                 };
 
+                LblGespeichertTermin.Content = "Termin wurde gespeichert.";
+                //LblGespeichertTermin.Content = customerID.ToString();
                 //Hinzufügen des neuen Objekts zum Kontext.
                 db.Appointment.Add(a);
                 //Übertragen der Änderungen an die Datenbank.
@@ -189,6 +192,7 @@ namespace TerminplanungFahrradladen
                 db.SaveChanges();
             }
             Terminplanen.Focus();
+            LblGespeichertTermin.Content = "Kunde wurde gespeichert.";
         }
 
         private void BtnClearKundeNeu_Click(object sender, RoutedEventArgs e)
@@ -226,6 +230,7 @@ namespace TerminplanungFahrradladen
                 db.SaveChanges();
             }
             Terminplanen.Focus();
+            LblGespeichertTermin.Content = "Mitarbeiter wurde gespeichert.";
         }
 
 
@@ -238,7 +243,11 @@ namespace TerminplanungFahrradladen
             CbMANeuVor.IsChecked = false;
         }
 
+
+
         //Prüfen der Textboxen auf korrekte Eingabe (Buchstaben oder Ziffern)
+        //[^a-zäöüß] -> Umlaute und ß inklusive
+        //[^\u00C0-\u017FA-Za-z]+ -> Unicode für Umlaute, ß und Akzente inklusive z. B. ç,é
         private void TbUhrzeit_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]{2}:[0-9]{2}");
@@ -259,7 +268,7 @@ namespace TerminplanungFahrradladen
 
         private void TbKundeNeuName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]+");
+            Regex regex = new Regex("[^\u00C0-\u017FA-Za-z]+");
             if (regex.IsMatch(TbKundeNeuName.Text))
             {
                 MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
@@ -267,8 +276,8 @@ namespace TerminplanungFahrradladen
         }
 
         private void TbKundeNeuVorName_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^a-zA-Z]+");
+        {   
+            Regex regex = new Regex("[^\u00C0-\u017FA-Za-z]+");
             if (regex.IsMatch(TbKundeNeuVorName.Text))
             {
                 MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
@@ -277,7 +286,7 @@ namespace TerminplanungFahrradladen
 
         private void TbKundeNeuStrasse_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]+");
+            Regex regex = new Regex("[^\u00C0-\u017FA-Za-z]+");
             if (regex.IsMatch(TbKundeNeuStrasse.Text))
             {
                 MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
@@ -305,7 +314,7 @@ namespace TerminplanungFahrradladen
 
         private void TbKundeNeuOrt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]+");
+            Regex regex = new Regex("[^\u00C0-\u017FA-Za-z]+");
             if (regex.IsMatch(TbKundeNeuOrt.Text))
             {
                 MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
@@ -314,7 +323,7 @@ namespace TerminplanungFahrradladen
 
         private void TbMANeuName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]+");
+            Regex regex = new Regex("[^\u00C0-\u017FA-Za-z]+");
             if (regex.IsMatch(TbMANeuName.Text))
             {
                 MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
@@ -323,7 +332,7 @@ namespace TerminplanungFahrradladen
 
         private void TbMANeuVorName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]+");
+            Regex regex = new Regex("[^\u00C0-\u017FA-Za-z]+");
             if (regex.IsMatch(TbMANeuVorName.Text))
             {
                 MessageBox.Show("Bitte geben Sie Buchstaben ohne Leerzeichen ein.");
