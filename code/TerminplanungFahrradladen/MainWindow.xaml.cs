@@ -34,6 +34,7 @@ namespace TerminplanungFahrradladen
         public MainWindow()
         {
             InitializeComponent();
+            LoadGrid();
             //Markiert nächsten Tag als Voreinstellung für neuen Termin
             CalendarT.SelectedDate = DateTime.Now.AddDays(1);
             //Vorauswahl ComboBoxen: erstes Element
@@ -50,6 +51,7 @@ namespace TerminplanungFahrradladen
 
             //Zwei Abfragen, die die ComobBoxen mit Vor- und Nachnamen aus Datenbank füllen
             //Füllen der Mitarbeiter-ComboBox
+
             using (var db = new TerminerstellungEntities())
             {
 
@@ -107,8 +109,8 @@ namespace TerminplanungFahrradladen
                 string[] searchName = comboBoxString.Split(' ');
                 string searchLastName = searchName[0];
 
-                //Customer customer = db.Customer.FirstOrDefault(x => x.LastName == searchLastName);
-                //int customerID = customer.CustomerID;
+                Customer customer = db.Customer.Where(x => x.LastName == searchLastName).FirstOrDefault();
+                int customerID = customer.CustomerID;
 
 
                 //Ausgewähltes Datum des DatePickers in SQL-DateTime konvertieren
@@ -126,6 +128,7 @@ namespace TerminplanungFahrradladen
                     Length = dauerTermin,
                     AppointmentPrice = decimal.Parse(TbPreis.Text),
                     //CustomerID = 10,
+                    CustomerID = customerID,
                     WorkshopID = 1
                 };
 
@@ -161,17 +164,33 @@ namespace TerminplanungFahrradladen
 
         }
 
-        //Wechseln zum Terminplanungs-Tab
-        private void BtnTerminAendern_Click(object sender, RoutedEventArgs e)
+
+
+
+        //Code 2.Tab---------------------------------------------------------------------------
+        //Tabelle laden
+        private void LoadGrid()
         {
-            Terminplanen.Focus();
+            using (var dbc = new TerminerstellungEntities())
+            {
+                var data = from r in db.Appointment select r;
+                DataGridLöschen.ItemsSource = data.ToList();
+            }
         }
 
-        //Löschen eines Termins im Terminsuchen-Tab
+        //Einträge löschen
         private void BtnTerminLoeschen_Click(object sender, RoutedEventArgs e)
         {
-            //ToDO
+            int appID = (DataGridLöschen.SelectedItem as Appointment).AppointmentID;
+            Appointment appointment = (from r in Context.Appointment where r.AppointmentID == appID select r).SingleOrDefault();
+            Context.Appointment.Remove(appointment);
+            Context.SaveChanges();
+            DataGridLöschen.ItemsSource = Context.Appointment.ToList();
         }
+
+
+
+
 
         private void BtnSpeichernKundeNeu_Click(object sender, RoutedEventArgs e)
         {
