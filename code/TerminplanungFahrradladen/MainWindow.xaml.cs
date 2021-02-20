@@ -239,9 +239,11 @@ namespace TerminplanungFahrradladen
         //Prüfen der Textboxen auf korrekte Eingabe (Buchstaben oder Ziffern)
         //[^a-zäöüß] -> Umlaute und ß inklusive
         //[^\u00C0-\u017FA-Za-z]+ -> Unicode für Umlaute, ß und Akzente inklusive z. B. ç,é
+        //Leerzeichen am Ende ignorieren \\s*$
         private void TbUhrzeit_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]{2}:[0-9]{2}");
+            //Regex regex = new Regex("[^\\d{2}\\:\\d{2}]");
+            Regex regex = new Regex("[^\\d\\d\\:\\d\\d]");
             if (regex.IsMatch(TbUhrzeit.Text))
             {
                 MessageBox.Show("Bitte geben Sie eine Uhrzeit im Format hh:mm ohne Leerzeichen ein.");
@@ -287,7 +289,7 @@ namespace TerminplanungFahrradladen
         private void TbKundeNeuHNr_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Zahlen und Buchstaben möglich, z. B. Hausnummer 24a; längere Hausnummern möglich
-            Regex regex = new Regex("^\\d{5} [a-z]?");
+            Regex regex = new Regex("[\\d{5}[a-z]?]");
             if (regex.IsMatch(TbKundeNeuPLZ.Text))
             {
                 MessageBox.Show("Bitte geben Sie maximal 5 Ziffern und einen Buchstaben ohne Leerzeichen ein.");
