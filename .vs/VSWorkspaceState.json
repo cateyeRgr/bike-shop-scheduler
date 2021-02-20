@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\code"
+    "\\code",
+    "\\code\\TerminplanungFahrradladen",
+    "\\documentation"
   ],
-  "SelectedNode": "\\code\\TerminplanungFahrradladen.sln",
+  "SelectedNode": "\\code\\TerminplanungFahrradladen\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

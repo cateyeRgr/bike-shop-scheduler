@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.Entity;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace TerminplanungFahrradladen
 {
@@ -25,11 +15,12 @@ namespace TerminplanungFahrradladen
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private ICollectionView CollectionView;
+        private ICollectionView CollectionView;
         private TerminerstellungEntities Context = new TerminerstellungEntities();
         List<String> myDataList = null;
         int rbIsChecked = 0;
         int dauerTermin = 2;
+
 
         public MainWindow()
         {
@@ -47,6 +38,7 @@ namespace TerminplanungFahrradladen
             //Context.Staff.Load();
             //CollectionView = CollectionViewSource.GetDefaultView(Context.Staff.Local);
             //MainGrid.DataContext = CollectionView;
+
 
             //Zwei Abfragen, die die ComobBoxen mit Vor- und Nachnamen aus Datenbank füllen
             //Füllen der Mitarbeiter-ComboBox
@@ -95,21 +87,19 @@ namespace TerminplanungFahrradladen
 
         //OnClick: neuer Termin wird in DB gespeichert
         private void BtnTerminSpeichern_Click(object sender, RoutedEventArgs e)
-        {
+        {  
             using (TerminerstellungEntities db = new TerminerstellungEntities())
             {
-                //var list = CollectionView.Cast<Customer>();
-                //string formatted;
                 DateTime dateAndTime;
 
                 //Kundennachamen aus ComboBox in CustomerDB suchen und ID liefern
-                string comboBoxString = comboBoxKunde.SelectedValue.ToString();
+                string comboBoxString = comboBoxKunde.SelectedItem.ToString();
                 string[] searchName = comboBoxString.Split(' ');
-                string searchLastName = searchName[0];
+                string searchLastName = searchName[1];
+                string searchFirstName = searchName[2];
 
-                //Customer customer = db.Customer.FirstOrDefault(x => x.LastName == searchLastName);
-                //int customerID = customer.CustomerID;
-
+                Customer customer = db.Customer.FirstOrDefault(x => x.LastName.Contains(searchLastName) && x.FirstName.Contains(searchFirstName));
+                int customerID = customer.CustomerID;
 
                 //Ausgewähltes Datum des DatePickers in SQL-DateTime konvertieren
                 DateTime? selectedDate = CalendarT.SelectedDate;
@@ -126,6 +116,7 @@ namespace TerminplanungFahrradladen
                     Length = dauerTermin,
                     AppointmentPrice = decimal.Parse(TbPreis.Text),
                     //CustomerID = 10,
+                    CustomerID = customerID,
                     WorkshopID = 1
                 };
 
