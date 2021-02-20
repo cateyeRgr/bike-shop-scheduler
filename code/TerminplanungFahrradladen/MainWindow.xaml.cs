@@ -107,8 +107,8 @@ namespace TerminplanungFahrradladen
                 string[] searchName = comboBoxString.Split(' ');
                 string searchLastName = searchName[0];
 
-                Customer customer = db.Customer.FirstOrDefault(x => x.LastName == searchLastName);
-                int customerID = customer.CustomerID;
+                //Customer customer = db.Customer.FirstOrDefault(x => x.LastName == searchLastName);
+                //int customerID = customer.CustomerID;
 
 
                 //Ausgewähltes Datum des DatePickers in SQL-DateTime konvertieren

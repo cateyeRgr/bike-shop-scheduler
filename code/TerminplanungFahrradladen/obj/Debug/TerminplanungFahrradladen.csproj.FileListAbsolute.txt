@@ -42,3 +42,4 @@ C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\obj\
 C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\obj\Debug\TerminplanungFahrradladen.csproj.CopyComplete
 C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\obj\Debug\TerminplanungFahrradladen.exe
 C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\obj\Debug\TerminplanungFahrradladen.pdb
+C:\Users\KM\Source\Repos\bike-shop-scheduler\code\TerminplanungFahrradladen\bin\Debug\de\EntityFramework.SqlServer.resources.dll
