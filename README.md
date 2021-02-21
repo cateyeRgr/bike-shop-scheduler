@@ -1,5 +1,5 @@
 # Terminplaner Fahrradladen
-SOT - Project 6 - J. O., A. P., K. M. (JohnOldenburger, Siizu, cateyeRgr/cateye0434)
+SOT - Project 6 - J. O., A. P., K. M. (@JohnOldenburger, @Siizu, @cateyeRgr/@cateye0434)
 
 ### Project summary: This project's objective is to provide scheduling software for company manpower planning and repair work for better bike workshop management.
 ### Projekt Übersicht: Mit diesem Projekt wollen wir ein besseres Werkstattmanagement ermöglichen. Dazu erstellen wir eine Software für digitale Reparaturtermine für Kunden und somit Arbeitsplanung für die Mitarbeiter, die durch den Werkstattleiter eingetragen wird.
