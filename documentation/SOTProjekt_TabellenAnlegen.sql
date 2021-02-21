@@ -109,6 +109,31 @@
 --);
 
 
+--INSERT INTO Staff(LastName, FirstName, Wage, Hours, Supervisor)
+--VALUES 
+--('Klein', 'Thorsten', 12, 1.7, 1),
+--('Kurz', 'Sabine', 12, 0.6, 0),
+--('Groß', 'Max', 12, 1.1, 0),
+--('Lang', 'Lilly', 12, 2.8, 0);
+
+--Insert into Customer(LastName, FirstName, Postleitzahl, Ort, Straße, Hausnummer)
+--Values ('Doe', 'John', 66600, 'Nowhere', 'Elmstreet','12a'),
+--	   ('Smith', 'Jane', 00001, 'Castle Rock', 'Main Street','11111'),
+--	   ('Picard', 'Jean-Luc', 70190, 'La Barre', 'Grande Rue','3'),
+--       ('Scully', 'Dana', 20906, 'Bethesda', '3170 West 53 Rd','35'); 
+
+--Insert into Workshop(Name, Postleitzahl, Ort, Straße, Hausnummer)
+--Values ('MorePower', 66130, 'Saarbrücken', 'Kurt-Schumacher-Straße','20');
+
+--Insert into Appointment(Date, Length, AppointmentPrice, CustomerID, WorkshopID)
+--Values ('2020-02-11', '2', 50, 2, 1),
+--	   ('2020-08-11', '2.5', 62.5, 1, 1),
+--	   ('2020-02-12', '3', 75, 3, 1),
+--       ('2020-22-11', '2', 50, 4, 1),
+--	   ('2020-02-12 10:15:11.000', '2', 50, 2, 1);
+
+--insert into Hardware(HardwareName,HardwarePrice) values ('Scheibenbremse', 100.00);
+--insert into Repair(RepairDetails,RepairPrice) values ('Kette reinigen', 30.00);
 --insert into Bike(SerialNumber) values(123456);
 --insert into HardwareRepair(HardwareID) values (1);
 
