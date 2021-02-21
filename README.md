@@ -4,10 +4,10 @@ SOT - Project 6 - J. O., A. P., K. M.
 ### Project summary: This project's objective is to provide scheduling software for company manpower planning and repair work for better bike workshop management.
 ### Projekt Übersicht: Mit diesem Projekt wollen wir ein besseres Werkstattmanagement ermöglichen. Dazu erstellen wir eine Software für digitale Reparaturtermine für Kunden und somit Arbeitsplanung für die Mitarbeiter, die durch den Werkstattleiter eingetragen wird.
 
-In der aktuellen Version konzentrieren wir uns, wie in der Projektaufgabe beschrieben, auf die Terminplanung. In zukünftigen Versionen können dann Ansichten der Arbeitszeiten für jeden Mitarbeiter hinzugefügt werden, um diese separat zu verwalten.
+In der aktuellen Version konzentrieren wir uns, wie in der Projektaufgabe beschrieben, auf die Terminplanung. In zukünftigen Versionen können dann Ansichten der Arbeitszeiten für jeden Mitarbeiter hinzugefügt werden, um diese separat zu verwalten. Außerdem wird dann auch eine Berechnung des Gehalts der Mitarbeiter und eine Kostenrechnung für die Werkstatt möglich sein.
 
-Die App enthält vier Sichten: Termin anlegen, Termin suchen, Kunde anlegen, Mitarbeiter anlegen
-In der "Termin anlegen"-View befinden sich oben und unten zwei ComboBoxen, in denen man je einen bestehenden Kunden und einen bestehenden Mitarbeiter auswählen und zum Termin hinzufügen kann. Mittig befindet sich ein Kalender, in dem man das Datum für den Termin auswählen kann, das aktuelle Datum ist grau hinterlegt, das früheste Datum für einen Termin ist hellblau hinterlegt.
+Aktuell enthält die App vier Sichten: Termin anlegen, Termin suchen, Kunde anlegen, Mitarbeiter anlegen
+In der "Termin anlegen"-View befinden sich oben und unten zwei ComboBoxen, in denen man je einen bestehenden Kunden und einen bestehenden Mitarbeiter auswählen und zu einem Termin hinzufügen kann. Mittig befindet sich ein Kalender, in dem man das Datum für den Termin auswählen kann, das aktuelle Datum ist grau hinterlegt, das früheste Datum für einen Termin ist hellblau hinterlegt.
 Unter dem Kalender befindet sich TextBoxen zum Eintragen von Uhrzeit und Preis für den Kunden. Ganz unten kann man den neuen Termin durch Drücken eines Buttons speichern oder löschen.
 
 ### Termin planen
