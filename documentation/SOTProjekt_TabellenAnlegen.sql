@@ -1,3 +1,5 @@
+--Verbesserte Query
+
 --IF DB_ID(N'Terminerstellung') IS NULL
 --  CREATE DATABASE Terminerstellung;
 --GO
