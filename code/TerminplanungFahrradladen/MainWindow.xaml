@@ -6,27 +6,17 @@
         xmlns:local="clr-namespace:TerminplanungFahrradladen"
         mc:Ignorable="d"
         Title="Termine" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         Loaded="Window_Loaded">
 
 
     <Window.Resources>
-        <!--<DataTemplate x:Key="listBoxTemplate">
-            <StackPanel Margin="3">
-                <DockPanel>
-                    <TextBlock FontWeight="Bold" Text="Vorname:" DockPanel.Dock="Left" Margin="5,0,10,0" />
-                    <TextBlock Text="" />
-                    <TextBlock Text="{Binding FirstName}" Foreground="Green" FontWeight="Bold" />
-                </DockPanel>
-                <DockPanel>
-                    <TextBlock FontWeight="Bold" Text="Nachname:" Foreground="DarkOrange" DockPanel.Dock="Left" Margin="5,0,5,0" />
-                    <TextBlock Text="{Binding LastName}" />
-
-                </DockPanel>
-            </StackPanel>
-        </DataTemplate>-->
 
 
-    <!--<Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle">
+        <!--<Style TargetType="{x:Type TextBlock}" x:Key="TextBlockStyle">
         <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsEnabled, 
@@ -41,11 +31,44 @@
     </Style>-->
     </Window.Resources>
 
-    <TabControl>
-        
-        <TabItem Name="Terminplanen" Header="Termin planen">
-            <Grid x:Name="MainGrid">
-                    
+    <TabControl x:Name="tControl" Margin="10" VerticalAlignment="Stretch">
+        <!--TabControl Style Template-->
+        <TabControl.Resources>
+            <Style TargetType="TabItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <!--ControlTemplate ändert (Tab)Control Aussehen, nicht die Funktionen-->
+                        <ControlTemplate TargetType="TabItem">
+                            <Border x:Name="Border" BorderThickness="0,1,1,0" BorderBrush="Wheat" CornerRadius="0,10,0,0" Height="30">
+                                <!--ControlTemplate braucht einen ContentPresenter-->
+                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,1"/>
+                            </Border>
+                            <!--Tabfarbe ändert sich, wenn ausgewählt-->
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter TargetName="Border" Property="Background" Value="#1C8ADB" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="AliceBlue" />
+                                    <Setter Property="Foreground" Value="#4488FF"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </TabControl.Resources>
+
+
+
+        <TabItem Name="Terminplanen" Header="Termin planen" FontWeight="Bold">
+            <Grid x:Name="MainGrid"  Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="2*" />
@@ -60,10 +83,10 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Label Name="LblKundeName" Content="Kunde" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" />
-                <ComboBox Name="comboBoxKunde" ItemsSource="{Binding Tabelle[0]}" Grid.Row="1" Grid.Column="1" Margin="0,5,0,5"/>
+                <Label Name="LblKundeName" Content="Kunde" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="1" Grid.Column="0" />
+                <ComboBox Name="comboBoxKunde" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="1" Grid.Column="1" Margin="0,5,0,5"/>
 
-                <Label Name="LblDatum" Content="Datum" HorizontalAlignment="Center"  Grid.Row="2" Grid.Column="0" />
+                <Label Name="LblDatum" Content="Datum" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="2" Grid.Column="0" />
                 <!--<DatePicker x:Name="DatePicker" MouseDoubleClick="DatePicker_MouseDoubleClick" IsTodayHighlighted="True" Grid.Row="2" Grid.Column="1">
                     <DatePicker.Resources>
                         <Style TargetType="{x:Type DatePickerTextBox}">
@@ -78,25 +101,58 @@
                         </Style>
                     </DatePicker.Resources>
                 </DatePicker>-->
+
                 <Calendar x:Name="CalendarT" HorizontalAlignment="Center"  Grid.Row="2" Grid.Column="1" Margin="0,5,0,0"/>
-                <Label Name="LblUhrzeit" Content="Uhrzeit" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" />
-                <TextBox Name="TbUhrzeit" Grid.Row="3" Grid.Column="1" Margin="0,5,0,5"/>
+                <Label Name="LblUhrzeit" Content="Uhrzeit" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="3" Grid.Column="0" />
+                <TextBox Name="TbUhrzeit" PreviewTextInput="TbUhrzeit_PreviewTextInput" BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="3" Grid.Column="1" Margin="0,5,0,5"/>
 
-                <Label Name="LblPreis" HorizontalAlignment="Center" Content="Preis" Grid.Row="4" Grid.Column="0" />
-                <TextBox Name="TbPreis" Grid.Row="4" Grid.Column="1" Margin="0,5,0,5"/>
+                <Label Name="LblPreis" HorizontalAlignment="Center" Content="Preis" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="4" Grid.Column="0" />
+                <TextBox Name="TbPreis" PreviewTextInput="TbPreis_PreviewTextInput"  BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="4" Grid.Column="1" Margin="0,5,0,5" />
 
-                <Label Name="LblMitarbeiter" Content="Mitarbeiter" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" />
-                <ComboBox Name="comboBoxMitarbeiter" Grid.Row="5" Grid.Column="1" Margin="0,5,0,5"/>
+                <Label Name="LblMitarbeiter" Content="Mitarbeiter" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="5" Grid.Column="0" />
+                <ComboBox Name="comboBoxMitarbeiter" BorderBrush="#1C8ADB" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="5" Grid.Column="1" Margin="0,5,0,5"/>
 
-                <Button x:Name="BtnTerminSpeichern" Click="BtnTerminSpeichern_Click" Content="Speichern" Grid.Row="6" Grid.Column="1" Margin="230,5,0,0"/>
-                <Button x:Name="BtnClear" Click="BtnClear_Click" Content="Löschen" Grid.Row="6" Grid.Column="2" Margin="5,5,30,0"/>
-
+                <Label Name="LblGespeichertTermin" HorizontalAlignment="Left" FontWeight="Bold" Foreground="#770000" Grid.Row="6" Grid.Column="1" />
+                <Button x:Name="BtnTerminSpeichern" Click="BtnTerminSpeichern_Click" Content="Speichern" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="1" Margin="230,5,0,0"/>
+                <Button x:Name="BtnClear" Click="BtnClear_Click" Content="Löschen" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="2" Margin="5,5,30,0"/>
+    
             </Grid>
         </TabItem>
 
         <!--Termin löschen - Tab -> z.B. Tabelle  mit Terminen -> "Löschen" - Button zum Löschen, "Ändern" - Button zur erneuten Öffnung Terminplanung Tab und kann geändert werden-->
 
-        <TabItem Name="TerminSuchen" Header="Termin suchen">
+        
+        <TabItem Name="TerminSuchen" Header="Termin suchen" FontWeight="Bold">
+
+            <Grid x:Name="MainGridSuchen">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="1" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <DataGrid x:Name="DataGridLöschen" CanUserDeleteRows="True" Grid.Row="1" Grid.Column="1" AlternatingRowBackground = "LightBlue" AlternationCount = "2" AutoGenerateColumns = "False" ItemsSource="{Binding }">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="AppointmentID" Binding="{Binding AppointmentID}"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                        <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
+                        <DataGridTextColumn Header="AppointmentPrice" Binding="{Binding AppointmentPrice}"/>
+                        <DataGridTextColumn Header="CustomerID" Binding="{Binding CustomerID}"/>
+                        <DataGridTextColumn Header="WorkshopID" Binding="{Binding WorkshopID}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <!--<Button x:Name="BtnTerminAendern" Click="BtnTerminAendern_Click" Content="Ändern" Foreground="White" Background="#1C8ADB" Grid.Row="2" Grid.Column="1" Margin="450,25,0,0"/>-->
+                <Button x:Name="BtnTerminLoeschen" Click="BtnTerminLoeschen_Click" Content="Löschen" Foreground="White" Background="#1C8ADB" Grid.Row="2" Grid.Column="2" Margin="0,25,0,0"/>
+            </Grid>
+        </TabItem>
+        
+        <!--<TabItem Name="TerminSuchen" Header="Termin suchen" FontWeight="Bold">
 
             <Grid x:Name="MainGridSuchen">
 
@@ -112,22 +168,22 @@
                 </Grid.RowDefinitions>
                 <DataGrid Name="DataGrid" Grid.Row="1" Grid.Column="1" AlternatingRowBackground = "LightBlue" AlternationCount = "2" AutoGenerateColumns = "False">
 
-                    <!--<DataGrid.Columns>
+                    --><!--<DataGrid.Columns>
                         <DataGridTextColumn Header = "TerminID" Binding = "{Binding }" />
                         <DataGridTextColumn Header = "Datum" Binding = "{Binding }" />
                         <DataGridTextColumn Header = "Dauer" Binding = "{Binding }" />
                         <DataGridTextColumn Header = "Kunde" Binding = "{Binding }" />
                         <DataGridTextColumn Header = "Werkstatt" Binding = "{Binding }" />
                         
-                    </DataGrid.Columns>-->
+                    </DataGrid.Columns>--><!--
 
                 </DataGrid>
-                <Button x:Name="BtnTerminAendern" Click="BtnTerminAendern_Click" Content="Ändern" Grid.Row="2" Grid.Column="1" Margin="450,25,0,0"/>
-                <Button x:Name="BtnTerminLoeschen" Click="BtnTerminLoeschen_Click" Content="Löschen" Grid.Row="2" Grid.Column="2" Margin="0,25,0,0"/>
+                <Button x:Name="BtnTerminAendern" Click="BtnTerminAendern_Click" Content="Ändern" Foreground="White" Background="#1C8ADB" Grid.Row="2" Grid.Column="1" Margin="450,25,0,0"/>
+                <Button x:Name="BtnTerminLoeschen" Click="BtnTerminLoeschen_Click" Content="Löschen" Foreground="White" Background="#1C8ADB" Grid.Row="2" Grid.Column="2" Margin="0,25,0,0"/>
             </Grid>
-        </TabItem>
+        </TabItem>-->
 
-        <TabItem Name="Kunde" Header="Kunde">
+        <TabItem Name="Kunde" Header="Kunde anlegen" FontWeight="Bold">
             <Grid x:Name="MainGridKunde">
 
                 <Grid.ColumnDefinitions>
@@ -136,7 +192,6 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
-                    
 
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -148,26 +203,69 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Label Name="LblKundeNeuName" Content="Name" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="1" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuName"  Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
+                <Label Name="LblKundeNeuName" Content="Name" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="0" />
+                <TextBox Name="TbKundeNeuName" PreviewTextInput="TbKundeNeuName_PreviewTextInput" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="1" Grid.Column="1"/>
 
-                <Label Name="LblKundeNeuVorame" Content="Vorname" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="1" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuVorName"  Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
+                <Label Name="LblKundeNeuVorame" Content="Vorname" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="2" />
+                <TextBox Name="TbKundeNeuVorName" PreviewTextInput="TbKundeNeuVorName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="1" Grid.Column="3"/>
 
-                <Label Name="LblKundeNeuStrasse" Content="Straße" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="2" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuStrasse"  Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
+                <Label Name="LblKundeNeuStrasse" Content="Straße" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="0" />
+                <TextBox Name="TbKundeNeuStrasse" PreviewTextInput="TbKundeNeuStrasse_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="2" Grid.Column="1" />
 
-                <Label Name="LblKundeNeuHNr" Content="Nr." HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="2" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuHNr" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
+                <Label Name="LblKundeNeuHNr" Content="Nr." HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="2" />
+                <TextBox Name="TbKundeNeuHNr" PreviewTextInput="TbKundeNeuHNr_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="2" Grid.Column="3" />
 
-                <Label Name="LblKundeNeuPLZ" Content="PLZ" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="4" Grid.Column="0" />
-                <TextBox Name="TbKundeNeuPLZ" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
+                <Label Name="LblKundeNeuPLZ" Content="PLZ" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="4" Grid.Column="0" />
+                <TextBox Name="TbKundeNeuPLZ" PreviewTextInput="TbKundeNeuPLZ_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="4" Grid.Column="1" />
 
-                <Label Name="LblKundeNeuOrt" Content="Ort" HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Row="4" Grid.Column="2" />
-                <TextBox Name="TbKundeNeuOrt" Margin="10,15,0,15" Grid.Row="4" Grid.Column="3" />
+                <Label Name="LblKundeNeuOrt" Content="Ort" HorizontalAlignment="Right" FontWeight="Bold" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="4" Grid.Column="2" />
+                <TextBox Name="TbKundeNeuOrt" PreviewTextInput="TbKundeNeuOrt_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,15,0,15" Grid.Row="4" Grid.Column="3" />
 
-                <Button x:Name="BtnSpeichernKundeNeu" Click="BtnSpeichernKundeNeu_Click" Content="Speichern" Grid.Row="6" Grid.Column="2" Margin="30,15,5,10"/>
-                <Button x:Name="BtnClearKundeNeu" Click="BtnClearKundeNeu_Click" Content="Löschen" Grid.Row="6" Grid.Column="3" Margin="5,15,30,10"/>
+                <Label Name="LblGespeichertKnd" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="6" Grid.Column="0" />
+                <Button x:Name="BtnSpeichernKundeNeu" Click="BtnSpeichernKundeNeu_Click" Content="Speichern" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="3" Margin="30,15,5,10"/>
+                <Button x:Name="BtnClearKundeNeu" Click="BtnClearKundeNeu_Click" Content="Löschen" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="4" Margin="5,15,30,10"/>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem Name="Mitarbeiter" Header="Mitarbeiter anlegen" FontWeight="Bold">
+            <Grid x:Name="MainGridMitarbeiter">
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+                <Label Name="LblMANeuName" Content="Name" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="0" />
+                <TextBox Name="TbMANeuName" PreviewTextInput="TbMANeuName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Name="LblMANeuVorame" Content="Vorname" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="1" Grid.Column="2" />
+                <TextBox Name="TbMANeuVorName" PreviewTextInput="TbMANeuVorName_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="1" Grid.Column="3"/>
+
+                <Label Name="LblMAGehalt" Content="Gehalt" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="0" />
+                <TextBox Name="TbMANeuGehalt" PreviewTextInput="TbMANeuGehalt_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="1" />
+
+                <Label Name="LblMANeuStunden" Content="Stunden" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,10" Grid.Row="2" Grid.Column="2" />
+                <TextBox Name="TbMANeuStunden" PreviewTextInput="TbMANeuStunden_PreviewTextInput"  VerticalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" BorderBrush="#1C8ADB" Margin="10,20,0,20" Grid.Row="2" Grid.Column="3" />
+
+                <Label Name="LblMANeuVor" Content="Vorgesetzter" FontWeight="Bold" HorizontalAlignment="Right" Foreground="#1C8ADB" Margin="0,15,0,12" Grid.Row="4" Grid.Column="0" />
+                <CheckBox Name="CbMANeuVor" Click="CbMANeuVor_Click" Foreground="#1C8ADB" VerticalAlignment="Center" BorderBrush="#1C8ADB" Margin="10,21,0,21" Grid.Row="4" Grid.Column="1" />
+
+                <Label Name="LblGespeichertMA" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#1C8ADB" Grid.Row="6" Grid.Column="0" />
+                <Button x:Name="BtnSpeichernMANeu" Click="BtnSpeichernMANeu_Click" Content="Speichern" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="3" Margin="30,15,5,10"/>
+                <Button x:Name="BtnClearMANeu" Click="BtnClearMANeu_Click" Content="Löschen" FontWeight="Bold" Foreground="White" Background="#1C8ADB" Grid.Row="6" Grid.Column="4" Margin="5,15,30,10"/>
 
             </Grid>
         </TabItem>

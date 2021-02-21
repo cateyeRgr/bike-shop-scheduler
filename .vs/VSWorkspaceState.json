@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\code",
+    "\\code\\TerminplanungFahrradladen",
+    "\\documentation"
   ],
+  "SelectedNode": "\\code\\TerminplanungFahrradladen\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
