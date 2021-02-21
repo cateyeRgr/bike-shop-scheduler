@@ -5,8 +5,20 @@
 --USE Terminerstellung
 --GO
 
+--IF OBJECT_ID('AppointmentRepair') IS NOT NULL
+--  DROP TABLE AppointmentRepair;
+--GO
+
+--IF OBJECT_ID('AppointmentStaff') IS NOT NULL
+--  DROP TABLE AppointmentStaff;
+--GO
+
+--IF OBJECT_ID('HardwareRepair') IS NOT NULL
+--  DROP TABLE HardwareRepair;
+--GO
+
 --IF OBJECT_ID('Appointment') IS NOT NULL
---  DROP TABLE Appoitment;
+--  DROP TABLE Appointment;
 --GO
 
 --IF OBJECT_ID('Bike') IS NOT NULL
@@ -33,17 +45,7 @@
 --  DROP TABLE Workshop;
 --GO
 
---IF OBJECT_ID('AppointmentRepair') IS NOT NULL
---  DROP TABLE AppointmentRepair;
---GO
 
---IF OBJECT_ID('AppointmentStaff') IS NOT NULL
---  DROP TABLE AppointmentStaff;
---GO
-
---IF OBJECT_ID('HardwareRepair') IS NOT NULL
---  DROP TABLE HardwareRepair;
---GO
 
 --CREATE TABLE Staff (
 --StaffID INT IDENTITY PRIMARY KEY,
@@ -60,7 +62,7 @@
 --FirstName varchar(100) NOT NULL,
 --Postleitzahl INT NOT NULL,
 --Ort varchar(100) NOT NULL,
---Stra�e varchar(100) NOT NULL,
+--Straße varchar(100) NOT NULL,
 --Hausnummer varchar(100) NOT NULL
 --);
 
@@ -70,7 +72,7 @@
 --Name varchar(100),
 --Postleitzahl INT NOT NULL,
 --Ort varchar(100) NOT NULL,
---Stra�e varchar(100) NOT NULL,
+--Straße varchar(100) NOT NULL,
 --Hausnummer varchar(100) NOT NULL
 --);
 
@@ -137,5 +139,25 @@
 --VALUES 
 --('Klein', 'Thorsten', 12, 1.7, 1),
 --('Kurz', 'Sabine', 12, 0.6, 0),
---('Gro�', 'Max', 12, 1.1, 0),
+--('Groß', 'Max', 12, 1.1, 0),
 --('Lang', 'Lilly', 12, 2.8, 0);
+
+--Insert into Customer(LastName, FirstName, Postleitzahl, Ort, Straße, Hausnummer)
+--Values ('Doe', 'John', 66600, 'Nowhere', 'Elmstreet','12a'),
+--	   ('Smith', 'Jane', 00001, 'Castle Rock', 'Main Street','11111'),
+--	   ('Picard', 'Jean-Luc', 70190, 'La Barre', 'Grande Rue','3'),
+--       ('Scully', 'Dana', 20906, 'Bethesda', '3170 West 53 Rd','35'); 
+
+--Insert into Workshop(Name, Postleitzahl, Ort, Straße, Hausnummer)
+--Values ('MorePower', 66130, 'Saarbrücken', 'Kurt-Schumacher-Straße','20');
+
+--Insert into Appointment(Date, Length, AppointmentPrice, CustomerID, WorkshopID)
+--Values ('2020-02-11', '2', 50, 2, 1),
+--	   ('2020-08-11', '2.5', 62.5, 1, 1),
+--	   ('2020-02-12', '3', 75, 3, 1),
+--       ('2020-22-11', '2', 50, 4, 1),
+--	   ('2020-02-12 10:15:11.000', '2', 50, 2, 1);
+
+--insert into Hardware(HardwareName,HardwarePrice) values ('Scheibenbremse', 100.00);
+--insert into Repair(RepairDetails,RepairPrice) values ('Kette reinigen', 30.00);
+
