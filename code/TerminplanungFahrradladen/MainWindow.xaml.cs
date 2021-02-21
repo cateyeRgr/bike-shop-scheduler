@@ -205,8 +205,6 @@ namespace TerminplanungFahrradladen
         {
             using (TerminerstellungEntities db = new TerminerstellungEntities())
             {
-                //checked = CbMANeuVor.IsChecked ? 1 : 0;
-                //Supervisor = int.Parse((CbMANeuVor.IsChecked?? false )? 1:0)
 
                 Staff s = new Staff
                 {
@@ -242,7 +240,7 @@ namespace TerminplanungFahrradladen
         //Leerzeichen am Ende ignorieren \\s*$
         private void TbUhrzeit_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            //Regex regex = new Regex("[^\\d{2}\\:\\d{2}]");
+            //Regex regex = new Regex("[^\\d{2}\\:{1}\\d{2}]");
             Regex regex = new Regex("[^\\d\\d\\:\\d\\d]");
             if (regex.IsMatch(TbUhrzeit.Text))
             {
@@ -252,10 +250,10 @@ namespace TerminplanungFahrradladen
 
         private void TbPreis_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^\\d\\d\\,\\d\\d]");
             if (regex.IsMatch(TbPreis.Text))
             {
-                MessageBox.Show("Bitte geben Sie Ziffern ohne Leerzeichen ein.");
+                MessageBox.Show("Bitte geben Sie Ziffern ohne Leerzeichen im Format 00,00 ein.");
             }
         }
 
