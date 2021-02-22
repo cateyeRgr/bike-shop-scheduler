@@ -1,4 +1,4 @@
---Verbesserte Version der mit Konstraints und korrekten Fremdschlüsseln
+--Verbesserte Version der 1.DB mit Konstraints und korrekten Fremdschlüsseln
 
 IF DB_ID(N'TerminerstellungTest') IS NULL
   CREATE DATABASE TerminerstellungTest;
@@ -118,8 +118,6 @@ ON DELETE NO ACTION,
 WorkshopID int,
 CONSTRAINT fk_appointment_workshop FOREIGN KEY (WorkshopID) REFERENCES Workshop(WorkshopID)
 ON DELETE NO ACTION,
-StaffID int,
-
 );
 
 CREATE TABLE Bike (
@@ -178,4 +176,7 @@ insert into Repair(RepairDetails,RepairPrice) values ('Wartung', 70.00);
 insert into Bike(SerialNumber) values(223457);
 insert into Bike(SerialNumber) values(123456);
 insert into Bike(SerialNumber) values(923459);
+
+
+
 
