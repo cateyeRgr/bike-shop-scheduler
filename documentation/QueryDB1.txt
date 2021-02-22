@@ -1,4 +1,4 @@
-﻿Ursprüngliche DB, mit der Programm funktioniert
+--Ursprüngliche DB, mit der Programm funktioniert
 
 IF DB_ID(N'Terminerstellung') IS NULL
   CREATE DATABASE Terminerstellung;
